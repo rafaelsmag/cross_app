@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import RootNavigator from '../router/Routes';
+import home from '../modules/home/reducers/index';
 
 const initialState = RootNavigator.router.getStateForAction(RootNavigator.router.getActionForPathAndParams('Home'));
 
@@ -11,6 +12,7 @@ const NavReducer = (state = initialState, action) => {
 
 const reducers = combineReducers({
   nav: NavReducer,
+  home,
 });
 
 export default reducers;
