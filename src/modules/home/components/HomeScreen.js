@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, FlatList, ImageBackground } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -31,13 +31,26 @@ class HomeScreen extends Component {
     this.props.fetchMovementsList();
   }
 
-  render() {
-    console.log(this.props.listMovements);
+  renderItem = (item) => {
+    console.log(item);
     return (
-      <View>
-        <Text>
-          Olá mundo do CrossFit!
-        </Text>
+      <View style={{ flex: 1 }}>
+        <Text>{item.title}</Text>
+      </View>
+    );
+  }
+
+  keyExtractor = item => item.key
+
+  render() {
+    return (
+      <View style={{ flex: 1 }} removeClippedSubviews={false}>
+        <FlatList
+          style={{ flex: 1 }}
+          data={this.props.listMovements}
+          renderItem={this.renderItem}
+          keyExtractor={this.keyExtractor}
+        />
       </View>
     );
   }
