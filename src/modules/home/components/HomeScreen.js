@@ -31,11 +31,13 @@ class HomeScreen extends Component {
     this.props.fetchMovementsList();
   }
 
-  renderItem = (item) => {
+  renderItem = ({ item }) => {
     console.log(item);
     return (
-      <View style={{ flex: 1 }}>
-        <Text>{item.title}</Text>
+      <View style={{ flex: 1, height: 200 }}>
+        <ImageBackground style={{ width: '100%', flex: 1 }} source={{ uri: item.image }}>
+          <Text >{item.title}</Text>
+        </ImageBackground>
       </View>
     );
   }
@@ -44,14 +46,14 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }} removeClippedSubviews={false}>
-        <FlatList
-          style={{ flex: 1 }}
-          data={this.props.listMovements}
-          renderItem={this.renderItem}
-          keyExtractor={this.keyExtractor}
-        />
-      </View>
+      <FlatList
+        contentContainerStyle={{ paddingBottom: 20 }}
+        data={this.props.listMovements}
+        extraData={this.state}
+        renderItem={this.renderItem}
+        keyExtractor={this.keyExtractor}
+        numColumns={2}
+      />
     );
   }
 }
