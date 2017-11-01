@@ -34,9 +34,16 @@ class HomeScreen extends Component {
   renderItem = ({ item }) => {
     console.log(item);
     return (
-      <View style={{ flex: 1, height: 200 }}>
-        <ImageBackground style={{ width: '100%', flex: 1 }} source={{ uri: item.image }}>
-          <Text >{item.title}</Text>
+      <View style={{ flex: 1, height: 200, padding: 5 }}>
+        <ImageBackground style={{ width: '100%', flex: 1,  flexDirection: 'column', justifyContent: 'flex-end' }} source={{ uri: item.image }}>
+          <View style={{ backgroundColor: '#ffffff55'}}>
+            <Text
+              style={{
+                fontSize: 18,
+                color: 'black'
+              }}
+            >{item.title}</Text>
+          </View>
         </ImageBackground>
       </View>
     );
