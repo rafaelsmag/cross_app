@@ -1,10 +1,10 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-import HomeScreen from '../modules/home/components/HomeScreen';
+import MovementsListScreen from '../modules/movementsList/components/MovementsListScreen';
 
 const RootNavigator = StackNavigator({
   Home: {
-    screen: HomeScreen,
+    screen: MovementsListScreen,
   },
 });
 

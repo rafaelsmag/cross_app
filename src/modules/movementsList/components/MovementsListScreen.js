@@ -3,10 +3,11 @@ import { View, Text, FlatList, ImageBackground } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { MovementsListStyle } from '../styles';
 
 import { fetchMovementsList } from '../actions/index';
 
-class HomeScreen extends Component {
+class MovementsListScreen extends Component {
 
   static propTypes = {
     fetchMovementsList: PropTypes.func.isRequired,
@@ -19,12 +20,8 @@ class HomeScreen extends Component {
 
   static navigationOptions = {
     title: 'CrossFit',
-    headerTitleStyle: {
-      color: '#f5f5f5'
-    },
-    headerStyle: {
-      backgroundColor: '#3f3f3f'
-    },
+    headerTitleStyle: MovementsListStyle.headerTitle,
+    headerStyle: MovementsListStyle.header,
   }
 
   componentDidMount() {
@@ -32,16 +29,12 @@ class HomeScreen extends Component {
   }
 
   renderItem = ({ item }) => {
-    console.log(item);
     return (
-      <View style={{ flex: 1, height: 200, padding: 5 }}>
-        <ImageBackground style={{ width: '100%', flex: 1,  flexDirection: 'column', justifyContent: 'flex-end' }} source={{ uri: item.image }}>
-          <View style={{ backgroundColor: '#ffffff55'}}>
+      <View style={MovementsListStyle.itemContainer}>
+        <ImageBackground style={MovementsListStyle.itemImageBackground} source={{ uri: item.image }}>
+          <View style={MovementsListStyle.itemTitleContainer}>
             <Text
-              style={{
-                fontSize: 18,
-                color: 'black'
-              }}
+              style={MovementsListStyle.itemTitle}
             >{item.title}</Text>
           </View>
         </ImageBackground>
@@ -54,7 +47,7 @@ class HomeScreen extends Component {
   render() {
     return (
       <FlatList
-        contentContainerStyle={{ paddingBottom: 20 }}
+        contentContainerStyle={MovementsListStyle.listContainer}
         data={this.props.listMovements}
         extraData={this.state}
         renderItem={this.renderItem}
@@ -67,7 +60,7 @@ class HomeScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    listMovements: state.home.movements,
+    listMovements: state.movementsList.movements,
   };
 };
 
@@ -75,4 +68,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchMovementsList }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MovementsListScreen);

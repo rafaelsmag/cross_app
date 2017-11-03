@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import RootNavigator from '../router/Routes';
-import home from '../modules/home/reducers/index';
+import movementsList from '../modules/movementsList/reducers/index';
 
 const initialState = RootNavigator.router.getStateForAction(RootNavigator.router.getActionForPathAndParams('Home'));
 
@@ -12,7 +12,7 @@ const NavReducer = (state = initialState, action) => {
 
 const reducers = combineReducers({
   nav: NavReducer,
-  home,
+  movementsList,
 });
 
 export default reducers;
