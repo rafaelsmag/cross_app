@@ -1,4 +1,3 @@
-import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import MovementsListScreen from '../modules/movementsList/components/MovementsListScreen';
 
