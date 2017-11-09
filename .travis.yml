@@ -1,0 +1,14 @@
+language: javascript
+branches:
+  only:
+    - master
+before_install:
+  - nvm install && nvm use
+  - node -v
+  - npm -v
+install:
+  - npm install
+script:
+  - npm run lint
+after_script:
+  - npm run update-coverage
