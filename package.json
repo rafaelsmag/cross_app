@@ -4,7 +4,9 @@
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
+		"test": "jest",
+    "lint": "eslint ./src/ ./__tests__/",
+    "lint-fix": "eslint --fix ./src/ ./__tests__/"
 	},
 	"dependencies": {
 		"prop-types": "^15.6.0",

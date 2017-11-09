@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers } from 'react-navigation';
 import RootNavigator from '../../../router/Routes';
 
+/* eslint-disable  react/prefer-stateless-function */
 class Navigator extends Component {
   render() {
     const { dispatch, nav } = this.props;

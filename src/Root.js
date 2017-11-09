@@ -5,6 +5,7 @@ import Navigator from './modules/navigator/components/Navigator';
 
 const store = configureStore({});
 
+/* eslint-disable  react/prefer-stateless-function */
 export default class Root extends Component {
   render() {
     return (
