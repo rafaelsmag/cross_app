@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchMovementDetails } from '../actions';
+import MovementDetails from '../components/MovementDetails';
 
 class MovementDetailsScreen extends Component {
+
   componentDidMount() {
-    const { fetchMovementDetails, _id } = this.props;
-    fetchMovementDetails(_id);
+    this.props.fetchMovementDetails();
   }
 
   render() {
     const { movement } = this.props;
-    return (
-      <View style={{ flex: 1 }}>
-        <Image source={{ uri: movement.image }} />
-        <Text>{movement.title}</Text>
-      </View>
-    );
+    if (typeof movement.key === 'undefined') {
+      return null;
+    }
+    return <MovementDetails movement={movement} />;
   }
 }
 
@@ -27,16 +25,18 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { _id } = ownProps.navigation.state.params;
+
   return {
-    fetchMovementDetails: dispatch(fetchMovementDetails),
+    fetchMovementDetails: () => dispatch(fetchMovementDetails(_id)),
   };
 };
+
 
 MovementDetailsScreen.propTypes = {
   fetchMovementDetails: PropTypes.func.isRequired,
   movement: PropTypes.object.isRequired,
-  _id: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovementDetailsScreen);

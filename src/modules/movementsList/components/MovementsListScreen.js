@@ -28,8 +28,13 @@ class MovementsListScreen extends Component {
     this.props.fetchMovementsList();
   }
 
+  // onPressItem = ({ key }) => {
+  //   this.props.navigation.navigate('MovementDetails', { _id: key });
+  // }
+
   renderItem = ({ item }) => {
     return (
+      // <TouchableOpacity style={MovementsListStyle.itemContainer} onPress={() => this.onPressItem(item)}>
       <View style={MovementsListStyle.itemContainer}>
         <ImageBackground style={MovementsListStyle.itemImageBackground} source={{ uri: item.image }}>
           <View style={MovementsListStyle.itemTitleContainer}>
@@ -39,6 +44,7 @@ class MovementsListScreen extends Component {
           </View>
         </ImageBackground>
       </View>
+      // </TouchableOpacity >
     );
   }
 

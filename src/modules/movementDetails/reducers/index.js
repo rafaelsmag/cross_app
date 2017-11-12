@@ -1,5 +1,5 @@
 import { UPDATE_MOVEMENT_DETAILS } from '../actions/types';
-import { updateMovementDetials } from './reducers';
+import { updateMovementDetails } from './reducers';
 
 const initialState = {
   movementDetails: {},
@@ -8,7 +8,7 @@ const initialState = {
 export default function reducer(movementDetailsState = initialState, action) {
   switch (action.type) {
     case UPDATE_MOVEMENT_DETAILS:
-      return updateMovementDetials(movementDetailsState, action);
+      return updateMovementDetails(movementDetailsState, action);
     default:
       return movementDetailsState;
   }
