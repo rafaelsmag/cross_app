@@ -30,6 +30,10 @@ class MovementsListScreen extends Component {
     this.props.fetchMovementsList();
   }
 
+  // onPressItem = ({ key }) => {
+  //   this.props.navigation.navigate('MovementDetails', { _id: key });
+  // }
+
   renderItem = ({ item }) => {
     return (
       <MovementsItem
