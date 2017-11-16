@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, ImageBackground } from 'react-native';
+import { FlatList, StatusBar, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MovementsListStyle } from '../styles';
 
 import { fetchMovementsList } from '../actions/index';
+
+import MovementsItem from './MovementsItem';
 
 class MovementsListScreen extends Component {
 
@@ -34,17 +36,10 @@ class MovementsListScreen extends Component {
 
   renderItem = ({ item }) => {
     return (
-      // <TouchableOpacity style={MovementsListStyle.itemContainer} onPress={() => this.onPressItem(item)}>
-      <View style={MovementsListStyle.itemContainer}>
-        <ImageBackground style={MovementsListStyle.itemImageBackground} source={{ uri: item.image }}>
-          <View style={MovementsListStyle.itemTitleContainer}>
-            <Text
-              style={MovementsListStyle.itemTitle}
-            >{item.title}</Text>
-          </View>
-        </ImageBackground>
-      </View>
-      // </TouchableOpacity >
+      <MovementsItem
+        image={item.image}
+        title={item.title}
+      />
     );
   }
 
@@ -52,14 +47,17 @@ class MovementsListScreen extends Component {
 
   render() {
     return (
-      <FlatList
-        contentContainerStyle={MovementsListStyle.listContainer}
-        data={this.props.listMovements}
-        extraData={this.state}
-        renderItem={this.renderItem}
-        keyExtractor={this.keyExtractor}
-        numColumns={2}
-      />
+      <View>
+        <StatusBar barStyle={'light-content'} />
+        <FlatList
+          contentContainerStyle={MovementsListStyle.listContainer}
+          data={this.props.listMovements}
+          extraData={this.state}
+          renderItem={this.renderItem}
+          keyExtractor={this.keyExtractor}
+          numColumns={2}
+        />
+      </View>
     );
   }
 }
