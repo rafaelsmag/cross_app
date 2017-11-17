@@ -3,6 +3,7 @@ import { saveMovements } from './reducers';
 
 export const initialState = {
   movements: [],
+  isLoading: true,
 };
 
 export default function reducer(listMovementsState = initialState, action) {
