@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
-import { StatusBar, View } from 'react-native';
+import { FlatList, StatusBar, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import LoadingSpinnerView from '../../../components/loadingSpinnerView';
-import MovementsList from '../components/MovementsList';
 import { MovementsListStyle } from '../styles';
 
 import { fetchMovementsList } from '../actions/index';
+
+import MovementsItem from './MovementsItem';
 
 class MovementsListScreen extends Component {
 
   static propTypes = {
     fetchMovementsList: PropTypes.func.isRequired,
-    isLoading: PropTypes.bool,
     listMovements: PropTypes.array.isRequired
   };
 
   static defaultProps = {
-    listMovements: [],
-    isLoading: false,
+    listMovements: []
   };
 
   static navigationOptions = {
@@ -32,16 +30,33 @@ class MovementsListScreen extends Component {
     this.props.fetchMovementsList();
   }
 
+  // onPressItem = ({ key }) => {
+  //   this.props.navigation.navigate('MovementDetails', { _id: key });
+  // }
+
+  renderItem = ({ item }) => {
+    return (
+      <MovementsItem
+        image={item.image}
+        title={item.title}
+      />
+    );
+  }
+
+  keyExtractor = item => item.key
+
   render() {
     return (
       <View>
         <StatusBar barStyle={'light-content'} />
-        <LoadingSpinnerView isLoading={this.props.isLoading}>
-          <MovementsList
-            list={this.props.listMovements}
-            numColumns={2}
-          />
-        </LoadingSpinnerView>
+        <FlatList
+          contentContainerStyle={MovementsListStyle.listContainer}
+          data={this.props.listMovements}
+          extraData={this.state}
+          renderItem={this.renderItem}
+          keyExtractor={this.keyExtractor}
+          numColumns={2}
+        />
       </View>
     );
   }
