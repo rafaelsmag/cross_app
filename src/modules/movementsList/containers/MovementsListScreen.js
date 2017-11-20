@@ -14,7 +14,8 @@ class MovementsListScreen extends Component {
   static propTypes = {
     fetchMovementsList: PropTypes.func.isRequired,
     isLoading: PropTypes.bool,
-    listMovements: PropTypes.array.isRequired
+    listMovements: PropTypes.array.isRequired,
+    navigation: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -32,14 +33,21 @@ class MovementsListScreen extends Component {
     this.props.fetchMovementsList();
   }
 
+  onPressItem = ({ key }) => {
+    console.log(key);
+    this.props.navigation.navigate('MovementDetails', { _id: key });
+  }
+
+
   render() {
     return (
-      <View>
+      <View style={MovementsListStyle.screenContainer}>
         <StatusBar barStyle={'light-content'} />
         <LoadingSpinnerView isLoading={this.props.isLoading}>
           <MovementsList
             list={this.props.listMovements}
             numColumns={2}
+            onPressItem={this.onPressItem}
           />
         </LoadingSpinnerView>
       </View>

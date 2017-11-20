@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { MovementsListStyle } from '../styles';
 
@@ -11,7 +11,7 @@ class MovementsListScreen extends Component {
   static propTypes = {
     numColumns: PropTypes.number,
     list: PropTypes.array.isRequired,
-    navigation: PropTypes.object,
+    onPressItem: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -19,16 +19,14 @@ class MovementsListScreen extends Component {
     navigation: {},
   };
 
-  onPressItem = ({ key }) => {
-    this.props.navigation.navigate('MovementDetails', { _id: key });
-  }
-
   renderItem = ({ item }) => {
     return (
-      <MovementsItem
-        image={item.image}
-        title={item.title}
-      />
+      <TouchableOpacity style={{ flex: 1 }} onPress={() => this.props.onPressItem(item)}>
+        <MovementsItem
+          image={item.image}
+          title={item.title}
+        />
+      </TouchableOpacity>
     );
   }
 

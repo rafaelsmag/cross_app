@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { StyleSheet } from 'react-native';
 
 const SPACING = 4;
@@ -15,7 +14,10 @@ export const MovementsListStyle = StyleSheet.create({
   },
   header: {
     backgroundColor: '#3f3f3f',
-  }
+  },
+  screenContainer: {
+    flex: 1,
+  },
 });
 
 export const MovementsItemStyle = StyleSheet.create({
