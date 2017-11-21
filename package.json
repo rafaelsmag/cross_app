@@ -5,13 +5,14 @@
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest",
-    "lint": "eslint ./src/ ./__tests__/",
-    "lint-fix": "eslint --fix ./src/ ./__tests__/"
+		"lint": "eslint ./src/ ./__tests__/",
+		"lint-fix": "eslint --fix ./src/ ./__tests__/"
 	},
 	"dependencies": {
 		"prop-types": "^15.6.0",
 		"react": "16.0.0-beta.5",
 		"react-native": "0.49.3",
+		"react-native-swiper": "^1.5.13",
 		"react-navigation": "^1.0.0-beta.15",
 		"react-redux": "^5.0.6",
 		"redux": "^3.7.2",

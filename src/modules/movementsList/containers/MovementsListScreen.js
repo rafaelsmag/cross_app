@@ -34,7 +34,6 @@ class MovementsListScreen extends Component {
   }
 
   onPressItem = ({ key }) => {
-    console.log(key);
     this.props.navigation.navigate('MovementDetails', { _id: key });
   }
 
